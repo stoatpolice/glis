@@ -7,7 +7,9 @@
   <title>Glis Studio - AI Illustrated Work</title>
   
   <!-- ファビコンの設定 -->
-  <link rel="icon" href="system/favicon.webp" type="image/x-icon">
+  <link rel="icon" href="system/favicon.webp" type="image/webp">
+  <link rel="icon" href="system/favicon.webp" type="image/webp">
+  <link rel="apple-touch-icon" href="system/favicon.webp">
 
   <!-- Open Graph Protocol (OGP) の設定 -->
   <meta property="og:title" content="Glis Studio - AI Illustrated Work &amp; Free Assets">
@@ -21,6 +23,7 @@
   <link href="style.css" rel="stylesheet" />
 </head>
 <body>
+ 
   <!-- ヘッダー / ナビゲーションバー -->
   <header>
    <div class="nav-container">
@@ -51,6 +54,9 @@
      </li>
      <li>
       <a class="nav-link" data-target="process"> PROCESS </a>
+     </li>
+     <li>
+      <a class="nav-link" data-target="labo"> LABO </a>
      </li>
      <li>
       <a class="nav-link" data-target="profile"> PROFILE </a>
@@ -116,6 +122,10 @@
      <div class="news-scroll-container">
       <ul class="news-list">
        
+        <li class="news-item">
+        <span class="news-date"> 2026.11.12 </span>
+        <span class="news-text"> コンテンツに「LABO」を追加しました</span>
+       </li>
         <li class="news-item">
         <span class="news-date"> 2026.11.10 </span>
         <span class="news-text">
@@ -1251,8 +1261,136 @@
     </article>
 
    </section>
+   
+   <!-- 8. LABO (生成AI実験・比較レポート) -->
+   <section class="content-section" id="labo">
+    <h2 class="section-title">LABO</h2>
+    
+    <div class="card">
+     <p>このページでは、プロンプトやAIモデルごとの出力傾向の比較など、生成AIに関する実験・検証記録をまとめています。</p>
+    </div>
 
-   <!-- 8. PROFILE -->
+    <!-- ページ内リンク目次（PROCESSと共通デザイン） -->
+    <div class="card process-toc">
+     <h3>INDEX</h3>
+     <ul>
+      <li><a href="#labo-ai-compare">同じ参考画像とプロンプトを使用して、異なるAIに画像を作成してもらう</a></li>
+     </ul>
+    </div>
+
+    <!-- 実験記事ブロック① -->
+    <article class="card process-article" id="labo-ai-compare">
+     <h3 class="process-article-title">同じ参考画像とプロンプトを使用して、異なるAIに画像を作成してもらう</h3>
+
+     <!-- 共通条件ブロック（参考画像＋プロンプト） -->
+     <div class="labo-condition-box">
+      <div class="labo-ref-img-wrapper">
+       <div class="labo-img-frame">
+        <img src="labo/labo01.webp" alt="使用した参考画像" />
+       </div>
+       <p class="process-img-caption">▲ 使用した参考画像</p>
+      </div>
+
+      <div class="labo-condition-text">
+       <h4 class="labo-sub-heading">実験の共通条件</h4>
+       <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 0.8rem;">
+        ・参考画像の作成にはDays AI、Gemini、PixAIを使用しています。<br>
+        ・プロンプトは私のリクエストを元にGeminiが出力したものです。画像の作成時は英文で入力していますが、読みやすくするために日本語訳して掲載しています。
+       </p>
+
+       <!-- プロンプト折りたたみ（初期状態で開いておきたい場合は open 属性を追加） -->
+       <details class="labo-prompt-details">
+        <summary>使用したプロンプト（日本語訳）</summary>
+        <div class="labo-prompt-content">
+         参考画像のキャラクターが、大きな使い古された木箱の中で胎児のような姿勢で丸まっている様子を、縦構図の高角度クローズアップで捉えたもの。膝を胸に引き寄せ、両腕で脚を抱きかかえ、背中は箱の壁に寄りかかっている。<br>
+         彼は参考画像の特徴をそのまま保っている。乱れた鮮やかな緑色の髪を小さく低いポニーテールにまとめ、黒縁の眼鏡をかけ、左頬には小さな絆創膏が貼られている。悲しげで、疲れ切った、憂いを帯びた表情で、視聴者をまっすぐ見上げている。灰色のスーツのジャケットは少ししわくちゃで、白いシャツはくしゃくしゃになり、襟は開いており、緑色のネクタイも緩んでいる。<br>
+         箱の中は暗く狭く、床や側面は数え切れないほどの乾いた色あせた花――土のような茶色、色あせたオレンジ、くすんだ黄色の枯れた花びら、乾いた葉、もろくなった茎――に埋もれ、彼を取り囲んでいる。上からの柔らかな映画的な光が影の差す内部に降り注ぎ、ほこりの粒を捉えながら、彼の緑の髪と眼鏡に優しいハイライトを当てている。一方、粗い木目やもろくなった植物のディテールは鮮明に描かれている。<br>
+         作風は、絵画的な筆致、柔らかな鉛筆のようなカラーライン、パステル調のハイキーなグラデーション、輝くリムライト、高い彩度、そして夢のような柔らかくぼやけた雰囲気を特徴とする、モダンなデジタルアニメである。
+        </div>
+       </details>
+      </div>
+     </div>
+
+     <!-- 3カラム比較グリッド（gallery-gridクラスを併用してモーダル連続送りに対応） -->
+     <h4 class="labo-sub-heading" style="margin-top: 1.8rem;">各AIの生成結果と特徴の比較</h4>
+     <div class="labo-compare-grid gallery-grid">
+
+      <!-- 1. Gemini -->
+      <div class="labo-compare-card">
+       <div class="labo-ai-badge">Gemini<span class="labo-model-name">Nano Banana 2 / 2.1</span></div>
+       <div class="gallery-item labo-compare-img" onclick="openModal('labo/labo02.webp', 'Gemini（Nano Banana 2 / 2.1）による生成結果')">
+        <img src="labo/labo02.webp" alt="Geminiによる生成画像" />
+       </div>
+       <h5 class="labo-result-catch">安定感のある「イラスト・コミック調」</h5>
+       <dl class="labo-feature-list">
+        <dt>表現の特徴</dt>
+        <dd>輪郭線がはっきりしており、パーツごとの境界が明確です。陰影はエアブラシ系の滑らかなグラデーションが中心で、立体感よりも「絵としての見やすさ・整い方」が優先されています。髪のハイライトは「天使の輪」のように規則的に入っており、伝統的な日本のデジタルイラストの文法に忠実です。</dd>
+        <dt>陰影と色彩</dt>
+        <dd>ベースはアニメ塗り＋グラデーション。暗い影を広めに入れ、重厚さを出している。全体的に彩度が抑えられており、影の色に黒や濃いグレーが多く使われているため、少しダークで閉塞感のある雰囲気になっています。</dd>
+        <dt>参考画像との忠実度</dt>
+        <dd>キャラクターのパーツ配置や顔のバランス、後ろで結んだ髪のボリューム、頬の絆創膏の位置など、元絵の情報を忠実に再現しています。元の絵柄をそのまま背景に馴染ませた印象。</dd>
+       </dl>
+      </div>
+
+      <!-- 2. Copilot -->
+      <div class="labo-compare-card">
+       <div class="labo-ai-badge">Copilot<span class="labo-model-name">DALL·E 3</span></div>
+       <div class="gallery-item labo-compare-img" onclick="openModal('labo/labo03.webp', 'Copilot（DALL·E 3）による生成結果')">
+        <img src="labo/labo03.webp" alt="Copilotによる生成画像" />
+       </div>
+       <h5 class="labo-result-catch">シネマティックな「セミリアル・厚塗り風」</h5>
+       <dl class="labo-feature-list">
+        <dt>表現の特徴</dt>
+        <dd>写真（実写）に近い空気感を持っています。右上から差し込む木漏れ日や光の粒子、手前の花のボケ感（被写界深度）など、カメラのレンズを通したような演出が施されています。花や木のささくれなど、背景もとても緻密に描写され、情緒的で儚い印象を与えます。</dd>
+        <dt>陰影と色彩</dt>
+        <dd>主線がほとんど塗りに溶け込んでおり、衣服のシワや髪の毛も「線」ではなく「明暗のグラデーション」で表現しています。色トレス（線に色を馴染ませる処理）が強く、線が目立ちません。髪や肩には複雑な影が落としてあり、空間の奥行きとドラマチックな空気感が際立っています。</dd>
+        <dt>参考画像との忠実度</dt>
+        <dd>緑の髪・紫の瞳・眼鏡・絆創膏といった記号的特徴は完璧に拾っていますが、画風に合わせて顔立ちがやや丸く、少し幼く繊細な印象にアレンジされています。</dd>
+       </dl>
+      </div>
+
+      <!-- 3. PixAI -->
+      <div class="labo-compare-card">
+       <div class="labo-ai-badge">PixAI<span class="labo-model-name">Tsubaki.3</span></div>
+       <div class="gallery-item labo-compare-img" onclick="openModal('labo/labo04.webp', 'PixAI（Tsubaki.3）による生成結果')">
+        <img src="labo/labo04.webp" alt="PixAIによる生成画像" />
+       </div>
+       <h5 class="labo-result-catch">リアルな背景×アニメ塗りの「現代アニメ風」</h5>
+       <p class="labo-sub-note">※PixAIは「画像を4枚同時に生成できる機能」があるため、4枚の中から特に綺麗に作成できたものを採用しています。</p>
+       <dl class="labo-feature-list">
+        <dt>表現の特徴</dt>
+        <dd>髪のツヤや服のシワの影のつけ方が典型的なアニメ塗りで、キャラクターの輪郭や色彩が鮮やかに際立っています。一方で背景の木箱や花はリアルな美術背景風に描かれており、人物のシルエットが浮かび上がるような構成になっています。</dd>
+        <dt>陰影と色彩</dt>
+        <dd>明暗のコントラストが強いです。特に緑色の髪の毛の鮮やかさや、肩・膝に当たる強い白いハイライトが特徴的で、ドラマチックで洗練された印象を受けます。影の色味に青みやグレーを混ぜることで、透明感とクールな雰囲気を出しています。</dd>
+        <dt>参考画像との忠実度</dt>
+        <dd>目の形やハイライトの入れ方、顎のシャープなラインなど、参考画像の絵柄そのもののテイストを自然に引き継いでいます。</dd>
+       </dl>
+      </div>
+
+     </div>
+     
+     <h4 class="labo-sub-heading" style="margin-top: 1.8rem;">結論（使い分けの目安）</h4>
+     <div class="labo-condition-box">
+       <ul class="terms-list allow">
+       <li>元のキャラクターデザインを崩さず、一体感のあるイラストにしたい場合 → Gemini</li>
+       <li>映画のワンシーンのような空気感・ライティング・質感を重視したい場合 → Copilot</li>
+       <li>元絵のタッチを活かしつつ、華やかで現代的なイラストに仕上げたい場合 → PixAI</li>
+     </ul>
+     </div>
+
+     <!-- 注釈 -->
+     <div class="process-note" style="margin-top: 1.5rem;">
+      <h5>注釈</h5>
+      <p>
+       あくまで「今回の参考画像とプロンプトを使用した場合」であり、それらの内容によって出力される画像は大きく異なります。<br>
+       また、同じ参考画像・プロンプト・AIであっても、生成のたびに細部の異なる画像が出力されます。
+      </p>
+     </div>
+
+    </article>
+   </section>
+
+   <!-- 9. PROFILE -->
    <section class="content-section" id="profile">
     <h2 class="section-title">PROFILE</h2>
     <div class="card">
