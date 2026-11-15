@@ -5,15 +5,13 @@
   <meta name="robots" content="noindex, nofollow">
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Glis Studio - AI Illustrated Work</title>
-  
+ 
   <!-- ファビコンの設定 -->
-  <link rel="icon" href="system/favicon.webp" type="image/webp">
-  <link rel="icon" href="system/favicon.webp" type="image/webp">
-  <link rel="apple-touch-icon" href="system/favicon.webp">
+  <link rel="icon" href="https://stoatpolice.github.io/glis/system/favicon.webp" type="image/webp">
 
   <!-- Open Graph Protocol (OGP) の設定 -->
-  <meta property="og:title" content="Glis Studio - AI Illustrated Work &amp; Free Assets">
-  <meta property="og:description" content="AI生成イラスト展示＆ゲーム用素材配布サイト">
+  <meta property="og:title" content="Glis Studio - AI Illustrated Work">
+  <meta property="og:description" content="AI生成イラスト展示サイト">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stoatpolice.github.io/glis/">
   <meta property="og:image" content="system/ogp.webp">
@@ -122,6 +120,12 @@
      <div class="news-scroll-container">
       <ul class="news-list">
        
+       <li class="news-item">
+        <span class="news-date"> 2026.11.1６ </span>
+        <span class="news-text">
+         GALLERYに2点追加しました（進、神進）<br>
+         MOVIEに1点追加しました（神進）</span>
+       </li>      
         <li class="news-item">
         <span class="news-date"> 2026.11.12 </span>
         <span class="news-text"> コンテンツに「LABO」を追加しました</span>
@@ -144,17 +148,6 @@
          GALLERYに3点追加しました（二宮、鋼） <br>
          ASSETのDL形式をWebpのみに変更しました<br>
         </span>
-       <li class="news-item">
-        <span class="news-date"> 2026.11.03 </span>
-        <span class="news-text"> GALLERYに3点追加しました（ドクター猪狩、進＆進2点） </span>
-       </li>
-       <li class="news-item">
-        <span class="news-date"> 2026.11.02 </span>
-        <span class="news-text">
-         GALLERYに2点追加しました（野球マスク、あおい）<br>
-         コンテンツにMOVIEを追加しました <br>
-        </span>
-       </li>
        <li class="news-item">
         <span class="news-date"> ――――― </span>
         <span class="news-text"> （直近5件より以前の更新は省略） </span>
@@ -347,6 +340,10 @@
 
     <!-- 画像グリッド -->
     <div class="gallery-grid">
+     
+    <div class="gallery-item" data-category="pwpr" onclick="openModal('images/susumu17.webp', '【制服】猪狩進')">
+     <img src="images/susumu17.webp" alt="【制服】猪狩進" />
+    </div>
      
     <div class="gallery-item" data-category="pwpr" onclick="openModal('images/susumu16.webp', '【オリックス】猪狩進')">
      <img src="images/susumu16.webp" alt="【オリックス】猪狩進" />
@@ -555,6 +552,11 @@
     </div>
 
     <!-- 神進 -->
+     
+    <div class="gallery-item hide" data-category="snss" onclick="openModal('images/snss04.webp', '意識してしまう')">
+      <img src="images/snss04.webp" alt="意識してしまう" />
+    </div>
+     
     <div class="gallery-item hide" data-category="snss" onclick="openModal('images/snss03.webp', 'うたたね')">
       <img src="images/snss03.webp" alt="うたたね" />
     </div> 
@@ -796,22 +798,22 @@
 
      <div class="card" style="margin-bottom: 1.5rem;">
        <p style="color: var(--text-sub); font-size: 0.9rem;">
-         「音声あり」カテゴリーの動画にはAIが生成したCVが付いているので、こだわりがある場合はミュート推奨です。</p>
+         「音声あり」カテゴリーの動画にはAIが生成したBGMやCVが付いています（BL作品は音声あり・なしが混ざっています）</p>
           <div class="terms-note">
           ※Vimeoにアップした動画を埋め込んでいるのでフォローボタンなどが表示されますが気にしないでください。
        </div>
      </div>
 
-     <!-- MOVIE用 カテゴリフィルターボタン群（追加） -->
+     <!-- MOVIE用 カテゴリフィルターボタン群 -->
      <div class="gallery-filter-container">
        <button class="metal-btn filter-btn active" data-category="all" onclick="filterMovies('all')">ALL</button>
        <button class="metal-btn filter-btn" data-category="audio" onclick="filterMovies('audio')">音声あり</button>
        <button class="metal-btn filter-btn" data-category="mute" onclick="filterMovies('mute')">音声なし</button>
+       <button class="metal-btn filter-btn" data-category="snss" onclick="filterMovies('snss')">神進</button>
      </div>
 
      <!-- 動画サムネイル一覧グリッド -->
      <div class="gallery-grid">
-      
       
        <!-- 縦長動画（第3引数は false または省略） -->
        <div class="gallery-item video-item" data-category="audio" onclick="openVimeoModal('1244290242', '【オリックス】猪狩進', true)">
@@ -830,6 +832,15 @@
          <div class="play-icon-overlay">▶</div>
          <img src="images/mask01.webp" alt="【パワポケ】野球マスク" />
        </div>
+      
+      
+       <!-- 神進 -->
+
+       <!-- 横長動画（第3引数に true を指定） -->
+        <div class="gallery-item video-item hide" data-category="snss" onclick="openVimeoModal('1247017007', '【音声あり】片想い中', false)">
+          <div class="play-icon-overlay">▶</div>
+          <img src="images/snss04.webp" alt="【音声あり】片想い中" />
+        </div>
 
      </div>
    </section>
@@ -1294,6 +1305,7 @@
       <div class="labo-condition-text">
        <h4 class="labo-sub-heading">実験の共通条件</h4>
        <p style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 0.8rem;">
+        ・2026.11.12の段階での生成結果です。<br>
         ・参考画像の作成にはDays AI、Gemini、PixAIを使用しています。<br>
         ・プロンプトは私のリクエストを元にGeminiが出力したものです。画像の作成時は英文で入力していますが、読みやすくするために日本語訳して掲載しています。
        </p>
@@ -1435,7 +1447,7 @@
        <div class="link-card">
         <a href="https://mixi.social/@stoatpolice2" rel="noopener" target="_blank"> mixi2 </a>
         <p style="font-size: 0.85rem; color: var(--text-sub); margin-top: 0.3rem">
-         コーディング、プログラミング、AIに関する話題をしています。
+         WebサイトやAIに関する話題をしています。
         </p>
        </div>
        <div class="link-card">
@@ -1486,7 +1498,7 @@
       <!-- ① 画像表示用エリア -->
       <img id="js-modal-img" class="modal-content" src="" alt="拡大画像">
       
-      <!-- ② 動画表示用エリア（追加） -->
+      <!-- ② 動画表示用エリア -->
       <div id="js-modal-video-container" style="display: none; width: 100%;"></div>
 
       <!-- タイトル表示 -->

@@ -345,6 +345,9 @@ function closeModal() {
 }
 
 // MOVIE用 フィルター
+// ▼ ALL選択時に非表示にするカテゴリーを配列で指定
+const hiddenInMoviesAllCategories = ['mmss', 'snss'];
+
 function filterMovies(category) {
   const items = document.querySelectorAll('#movie .gallery-item');
   const filterBtns = document.querySelectorAll('#movie .filter-btn');
@@ -354,14 +357,17 @@ function filterMovies(category) {
     btn.classList.toggle('active', btn.getAttribute('data-category') === category);
   });
 
-  // アイテムの表示 / 非表示を切り替え
+  // アイテムの表示 / 非表示を切り替え（複数カテゴリーのスペース区切りに対応）
   items.forEach(item => {
-    const itemCategory = item.getAttribute('data-category') || '';
+    const itemCategories = (item.getAttribute('data-category') || '').split(' ').filter(Boolean);
 
     if (category === 'all') {
-      item.classList.remove('hide');
+      // ALL選択時：隠す対象カテゴリが含まれていれば非表示（hide）にする
+      const hasHiddenCategory = itemCategories.some(cat => hiddenInMoviesAllCategories.includes(cat));
+      item.classList.toggle('hide', hasHiddenCategory);
     } else {
-      item.classList.toggle('hide', itemCategory !== category);
+      // 特定カテゴリ選択時：該当カテゴリが含まれていれば表示する
+      item.classList.toggle('hide', !itemCategories.includes(category));
     }
   });
 
