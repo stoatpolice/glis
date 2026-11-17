@@ -121,7 +121,12 @@
       <ul class="news-list">
        
        <li class="news-item">
-        <span class="news-date"> 2026.11.1６ </span>
+        <span class="news-date"> 2026.11.17 </span>
+        <span class="news-text">
+         GALLERYに2点追加しました（野球仮面）</span>
+       </li>
+       <li class="news-item">
+        <span class="news-date"> 2026.11.16 </span>
         <span class="news-text">
          GALLERYに1点追加しました（神進）<br>
          MOVIEに1点追加しました（神進）</span>
@@ -142,12 +147,6 @@
          LOGSに1点追加しました（進）<br>
          MOVIEに1点追加しました（進） </span>
        </li>
-       <li class="news-item">
-        <span class="news-date"> 2026.11.04 </span>
-        <span class="news-text">
-         GALLERYに3点追加しました（二宮、鋼） <br>
-         ASSETのDL形式をWebpのみに変更しました<br>
-        </span>
        <li class="news-item">
         <span class="news-date"> ――――― </span>
         <span class="news-text"> （直近5件より以前の更新は省略） </span>
@@ -333,6 +332,7 @@
      <div class="gallery-filter-container">
        <button class="metal-btn filter-btn active" data-category="all" onclick="filterGallery('all')">ALL</button>
        <button class="metal-btn filter-btn active" data-category="pwpr" onclick="filterGallery('pwpr')">パワプロ</button>
+      <button class="metal-btn filter-btn active" data-category="pwpk" onclick="filterGallery('pwpk')">パワポケ</button>
        <button class="metal-btn filter-btn active" data-category="pwad" onclick="filterGallery('pwad')">パワアド</button>
        <button class="metal-btn filter-btn" data-category="mmss" onclick="filterGallery('mmss')">守進</button>
        <button class="metal-btn filter-btn" data-category="snss" onclick="filterGallery('snss')">神進</button>
@@ -341,11 +341,19 @@
     <!-- 画像グリッド -->
     <div class="gallery-grid">
      
+    <div class="gallery-item" data-category="pwpk" onclick="openModal('images/mask03.webp', '【忍者戦国編】野球仮面')">
+     <img src="images/mask03.webp" alt="【忍者戦国編】野球仮面" />
+    </div>
+     
+    <div class="gallery-item" data-category="pwpk" onclick="openModal('images/mask02.webp', '【忍者戦国編】野球仮面')">
+     <img src="images/mask02.webp" alt="【忍者戦国編】野球仮面" />
+    </div>
+     
     <div class="gallery-item" data-category="pwpr" onclick="openModal('images/susumu16.webp', '【オリックス】猪狩進')">
      <img src="images/susumu16.webp" alt="【オリックス】猪狩進" />
     </div>
      
-    <div class="gallery-item" data-category="pwpr" onclick="openModal('images/hagane01.webp', '【パワポケ】鋼毅')">
+    <div class="gallery-item" data-category="pwpk" onclick="openModal('images/hagane01.webp', '【パワポケ】鋼毅')">
      <img src="images/hagane01.webp" alt="【パワポケ】鋼毅" />
     </div>
      
@@ -357,19 +365,19 @@
      <img src="images/aoi01.webp" alt="【ロッテ】早川あおい" />
     </div>
      
-    <div class="gallery-item" data-category="pwpr" onclick="openModal('images/pair21.webp', '【プロ＆ポケ】進と進')">
+    <div class="gallery-item" data-category="pwpr pwpk" onclick="openModal('images/pair21.webp', '【プロ＆ポケ】進と進')">
      <img src="images/pair21.webp" alt="【プロ＆ポケ】進と進" />
     </div>
      
-    <div class="gallery-item" data-category="pwpr" onclick="openModal('images/pair20.webp', '【プロ＆ポケ】進と進')">
+    <div class="gallery-item" data-category="pwpr pwpk" onclick="openModal('images/pair20.webp', '【プロ＆ポケ】進と進')">
      <img src="images/pair20.webp" alt="【プロ＆ポケ】進と進" />
     </div>
      
-    <div class="gallery-item" data-category="pwpr" onclick="openModal('images/doctor01.webp', '【パワポケ】ドクター猪狩')">
+    <div class="gallery-item" data-category="pwpk" onclick="openModal('images/doctor01.webp', '【パワポケ】ドクター猪狩')">
      <img src="images/doctor01.webp" alt="【パワポケ】ドクター猪狩" />
     </div>
      
-    <div class="gallery-item" data-category="pwpr" onclick="openModal('images/mask01.webp', '【パワポケ】野球マスク')">
+    <div class="gallery-item" data-category="pwpk" onclick="openModal('images/mask01.webp', '【パワポケ】野球マスク')">
      <img src="images/mask01.webp" alt="【パワポケ】野球マスク" />
     </div>
      
