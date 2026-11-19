@@ -121,6 +121,13 @@
       <ul class="news-list">
        
        <li class="news-item">
+        <span class="news-date"> 2026.11.20 </span>
+        <span class="news-text">
+         GALLERYに2点追加しました（野球仮面）<br>
+         LOGSに1点追加しました（野球仮面）
+        </span>
+       </li>
+       <li class="news-item">
         <span class="news-date"> 2026.11.19 </span>
         <span class="news-text">
          GALLERYに1点追加しました（ハガネと野球仮面）</span>
@@ -139,12 +146,6 @@
         <li class="news-item">
         <span class="news-date"> 2026.11.12 </span>
         <span class="news-text"> コンテンツに「LABO」を追加しました</span>
-       </li>
-        <li class="news-item">
-        <span class="news-date"> 2026.11.10 </span>
-        <span class="news-text">
-         GALLERYに1点追加しました（進）<br>
-         LOGSに1点追加しました（守）</span>
        </li>
        <li class="news-item">
         <span class="news-date"> ――――― </span>
@@ -340,6 +341,14 @@
 
     <!-- 画像グリッド -->
     <div class="gallery-grid">
+     
+    <div class="gallery-item" data-category="pwpk" onclick="openModal('images/mask05.webp', '【忍者戦国編】野球仮面')">
+     <img src="images/mask05.webp" alt="【忍者戦国編】野球仮面" />
+    </div>
+     
+     <div class="gallery-item" data-category="pwpk" onclick="openModal('images/mask04.webp', '【忍者戦国編】野球仮面')">
+     <img src="images/mask04.webp" alt="【忍者戦国編】野球仮面" />
+    </div>
      
     <div class="gallery-item" data-category="pwpk" onclick="openModal('images/pair22.webp', '【忍者戦国編】ハガネと野球仮面')">
      <img src="images/pair22.webp" alt="【忍者戦国編】ハガネと野球仮面" />
@@ -594,13 +603,24 @@
      <div class="gallery-filter-container">
        <button class="metal-btn filter-btn active" data-category="all" onclick="filterLogs('all')">ALL</button>
        <button class="metal-btn filter-btn" data-category="pwpr" onclick="filterLogs('pwpr')">パワプロ</button>
+       <button class="metal-btn filter-btn" data-category="pwpk" onclick="filterLogs('pwpk')">パワポケ</button>
        <button class="metal-btn filter-btn" data-category="pwad" onclick="filterLogs('pwad')">パワアド</button>
+      <br class="sp-only">
        <button class="metal-btn filter-btn" data-category="mmss" onclick="filterLogs('mmss')">守進</button>
        <button class="metal-btn filter-btn" data-category="snss" onclick="filterLogs('snss')">神進</button>
      </div>
 
      <!-- コルクボード風 雑多グリッド -->
-     <div class="corkboard-grid">      
+     <div class="corkboard-grid">
+      
+       <!-- わずかに右傾き -->
+       <div class="scrap-item rotate-s-r" data-category="pwpk" onclick="openModal('logs/mask01.webp', '【野球仮面】NGシーン')">
+         <div class="tape"></div>
+         <div class="scrap-img-wrapper">
+           <img src="logs/mask01.webp" alt="【野球仮面】NGシーン" />
+         </div>
+         <span class="scrap-label">MASK</span>
+       </div>
       
        <!-- 左傾き -->
        <div class="scrap-item rotate-l" data-category="pwpr" onclick="openModal('logs/mamoru04.webp', '【猪狩守】猫耳パーカー絵の続き？')">
@@ -617,7 +637,7 @@
          <div class="scrap-img-wrapper">
            <img src="logs/susumu07.webp" alt="【猪狩進】動画の元絵" />
          </div>
-         <span class="scrap-label">PWPR</span>
+         <span class="scrap-label">SUSUMU</span>
        </div>
       
        <!-- わずかに左傾き -->
@@ -626,7 +646,7 @@
          <div class="scrap-img-wrapper">
            <img src="logs/susumu06.webp" alt="【猪狩進】ウェイトレス" />
          </div>
-         <span class="scrap-label">PWPR</span>
+         <span class="scrap-label">SUSUMU</span>
        </div>      
       
        <!-- わずかに右傾き -->
