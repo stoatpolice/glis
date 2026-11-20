@@ -3,7 +3,7 @@
    ========================================================= */
 const pageTopBtn = document.getElementById('js-pagetop');
 
-  // ボタンの表示/非表示を判定する関数
+// ボタンの表示/非表示を判定する関数
 function checkPageTopBtn() {
   if (!pageTopBtn) return;
   // ★ 100px 以上スクロールで表示
@@ -85,23 +85,31 @@ if (heroTrack && heroSlides.length > 0) {
 }
 
 /* =========================================================
-   4. ギャラリー & LOGS フィルター & モーダル拡大表示
+   4. ギャラリー & LOGS & MOVIE フィルター・モーダル制御
    ========================================================= */
 const modal = document.getElementById('js-modal');
 const modalImg = document.getElementById('js-modal-img');
 const modalTitle = document.getElementById('js-modal-title');
 
-let activeModalItems = []; // 現在開いているセクション（GALLERYまたはLOGS）の画像リスト
+let activeModalItems = []; // 現在開いているセクション（または記事）の画像リスト
 let currentModalIndex = 0;
 
-// 現在表示されているセクションの画像データを初期化・取得
-function initActiveModalData() {
-  // 現在アクティブなセクションを取得
+// 現在表示されているセクション（または記事）の画像データを初期化・取得
+function initActiveModalData(clickedElement = null) {
   const activeSection = document.querySelector('.content-section.active');
   if (!activeSection) return;
 
-  // GALLERYまたはLOGS内の「非表示(hide)になっていないアイテム」を取得
-  const items = activeSection.querySelectorAll('.gallery-grid .gallery-item:not(.hide), .corkboard-grid .scrap-item:not(.hide)');
+  // クリックされた要素が <article class="process-article"> 内にある場合は、その記事内だけを検索範囲にする
+  let searchRoot = activeSection;
+  if (clickedElement) {
+    const parentArticle = clickedElement.closest('.process-article');
+    if (parentArticle) {
+      searchRoot = parentArticle;
+    }
+  }
+
+  // 検索範囲内の「非表示(hide)になっていないアイテム」を取得
+  const items = searchRoot.querySelectorAll('.gallery-grid .gallery-item:not(.hide), .corkboard-grid .scrap-item:not(.hide)');
   
   activeModalItems = Array.from(items).map(item => {
     const img = item.querySelector('img');
@@ -168,64 +176,39 @@ function filterLogs(category) {
   initActiveModalData();
 }
 
-// モーダル表示処理
-function openModalByIndex(index) {
-  initActiveModalData();
-  if (activeModalItems.length === 0) return;
+// MOVIE用 フィルター
+// ▼ ALL選択時に非表示にするカテゴリーを配列で指定
+const hiddenInMoviesAllCategories = ['mmss', 'snss'];
 
-  if (index < 0) {
-    currentModalIndex = activeModalItems.length - 1;
-  } else if (index >= activeModalItems.length) {
-    currentModalIndex = 0;
-  } else {
-    currentModalIndex = index;
-  }
+function filterMovies(category) {
+  const items = document.querySelectorAll('#movie .gallery-item');
+  const filterBtns = document.querySelectorAll('#movie .filter-btn');
 
-  const currentItem = activeModalItems[currentModalIndex];
-  if (currentItem && modal && modalImg && modalTitle) {
-    modalImg.src = currentItem.src;
-    modalTitle.textContent = currentItem.title;
-    modal.style.display = 'flex';
-  }
-}
-
-function openModal(imgSrc, titleText) {
-  initActiveModalData();
-  const index = activeModalItems.findIndex(item => {
-    return item.rawSrc === imgSrc || item.src.endsWith(imgSrc) || item.src === imgSrc;
+  // ボタンのアクティブ状態を切り替え
+  filterBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-category') === category);
   });
-  openModalByIndex(index !== -1 ? index : 0);
-}
 
-function changeModalImage(step) {
-  openModalByIndex(currentModalIndex + step);
-}
+  // アイテムの表示 / 非表示を切り替え（複数カテゴリーのスペース区切りに対応）
+  items.forEach(item => {
+    const itemCategories = (item.getAttribute('data-category') || '').split(' ').filter(Boolean);
 
-function closeModal() {
-  if (modal) modal.style.display = 'none';
-}
+    if (category === 'all') {
+      // ALL選択時：隠す対象カテゴリが含まれていれば非表示（hide）にする
+      const hasHiddenCategory = itemCategories.some(cat => hiddenInMoviesAllCategories.includes(cat));
+      item.classList.toggle('hide', hasHiddenCategory);
+    } else {
+      // 特定カテゴリ選択時：該当カテゴリが含まれていれば表示する
+      item.classList.toggle('hide', !itemCategories.includes(category));
+    }
+  });
 
-document.addEventListener('keydown', (e) => {
-  if (modal && window.getComputedStyle(modal).display === 'flex') {
-    if (e.key === 'ArrowLeft') changeModalImage(-1);
-    if (e.key === 'ArrowRight') changeModalImage(1);
-    if (e.key === 'Escape') closeModal();
-  }
-});
-
-window.addEventListener('DOMContentLoaded', () => {
-  filterGallery('all');
-  filterLogs('all');
-  filterMovies('all');
-});
-
-/* =========================================================
-   4. MOVIE モーダル表示処理
-   ========================================================= */
-
-// 画像モーダル表示処理
-function openModalByIndex(index) {
+  // モーダル用データ（現在表示されているリスト）を再更新
   initActiveModalData();
+}
+
+// 画像モーダル表示処理（インデックス指定）
+function openModalByIndex(index) {
   if (activeModalItems.length === 0) return;
 
   if (index < 0) {
@@ -259,14 +242,19 @@ function openModalByIndex(index) {
   }
 }
 
+// 画像モーダルを開く（サムネイルクリック時）
 function openModal(imgSrc, titleText) {
-  initActiveModalData();
+  // クリックされた要素を取得してグループ範囲（記事単位 or セクション全体）を判定
+  const clickedElement = (typeof event !== 'undefined' && event && event.currentTarget) ? event.currentTarget : null;
+  initActiveModalData(clickedElement);
+
   const index = activeModalItems.findIndex(item => {
     return item.rawSrc === imgSrc || item.src.endsWith(imgSrc) || item.src === imgSrc;
   });
   openModalByIndex(index !== -1 ? index : 0);
 }
 
+// モーダル内の前後移動
 function changeModalImage(step) {
   openModalByIndex(currentModalIndex + step);
 }
@@ -326,7 +314,6 @@ function closeModal() {
   // 動画が再生中なら停止して消去
   const videoContainer = document.getElementById('js-modal-video-container');
   if (videoContainer) {
-    const video = videoContainer.querySelector('iframe, video');
     videoContainer.innerHTML = '';
     videoContainer.style.display = 'none';
   }
@@ -344,39 +331,24 @@ function closeModal() {
   if (nextBtn) nextBtn.style.display = 'flex';
 }
 
-// MOVIE用 フィルター
-// ▼ ALL選択時に非表示にするカテゴリーを配列で指定
-const hiddenInMoviesAllCategories = ['mmss', 'snss'];
+// キーボード操作（左右矢印・Escキー）
+document.addEventListener('keydown', (e) => {
+  if (modal && window.getComputedStyle(modal).display === 'flex') {
+    if (e.key === 'ArrowLeft') changeModalImage(-1);
+    if (e.key === 'ArrowRight') changeModalImage(1);
+    if (e.key === 'Escape') closeModal();
+  }
+});
 
-function filterMovies(category) {
-  const items = document.querySelectorAll('#movie .gallery-item');
-  const filterBtns = document.querySelectorAll('#movie .filter-btn');
-
-  // ボタンのアクティブ状態を切り替え
-  filterBtns.forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-category') === category);
-  });
-
-  // アイテムの表示 / 非表示を切り替え（複数カテゴリーのスペース区切りに対応）
-  items.forEach(item => {
-    const itemCategories = (item.getAttribute('data-category') || '').split(' ').filter(Boolean);
-
-    if (category === 'all') {
-      // ALL選択時：隠す対象カテゴリが含まれていれば非表示（hide）にする
-      const hasHiddenCategory = itemCategories.some(cat => hiddenInMoviesAllCategories.includes(cat));
-      item.classList.toggle('hide', hasHiddenCategory);
-    } else {
-      // 特定カテゴリ選択時：該当カテゴリが含まれていれば表示する
-      item.classList.toggle('hide', !itemCategories.includes(category));
-    }
-  });
-
-  // モーダル用データ（現在表示されているリスト）を再更新
-  initActiveModalData();
-}
+// 初期フィルター適用
+window.addEventListener('DOMContentLoaded', () => {
+  filterGallery('all');
+  filterLogs('all');
+  filterMovies('all');
+});
 
 /* =========================================================
-   6. 素材配布 手動スライダー (キャラクター別)
+   5. 素材配布 手動スライダー (キャラクター別)
    ========================================================= */
 const assetPositions = {
   char1: 0,
@@ -404,7 +376,7 @@ function moveAssetSlide(charId, direction) {
 }
 
 /* =========================================================
-   7. ページトップへ戻るボタンのイベント登録
+   6. ページトップへ戻るボタンのイベント登録
    ========================================================= */
 if (pageTopBtn) {
   // スクロール時に表示切り替え

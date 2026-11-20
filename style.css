@@ -1290,6 +1290,24 @@ section[id] {
   margin-top: 0.8rem;
 }
 
+/* 2×2（4つ比較）グリッド用の追加クラス */
+.labo-compare-grid.grid-2x2.gallery-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.labo-compare-grid.grid-2x2 .labo-compare-img {
+  max-width: 260px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* スマホ・タブレット表示時は他の比較グリッドと同様に1列縦並びにする */
+@media (max-width: 900px) {
+  .labo-compare-grid.grid-2x2.gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* 各AIの比較カード */
 .labo-compare-card {
   background: rgba(255, 255, 255, 0.03);
@@ -1389,6 +1407,29 @@ section[id] {
     max-width: 220px;
     flex: none;
     margin: 0 auto;
+  }
+}
+
+/* =========================================================
+   LABO コラム内 4枚サムネイルグリッド（PC:4列 / スマホ:2x2）
+   ========================================================= */
+.labo-thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1rem 0 1.2rem 0;
+}
+
+/* ホバー時の浮き上がり演出が不要な場合は以下を削除してもOK */
+.labo-thumb-grid .labo-img-frame:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .labo-thumb-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
   }
 }
 
